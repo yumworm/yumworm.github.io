@@ -26,7 +26,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 15px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font: 18px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 a {
@@ -39,7 +39,7 @@ a {
 }
 
 .page {
-  max-width: 640px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 32px 20px 64px;
 }
@@ -53,20 +53,20 @@ a {
 }
 
 .brand img {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
 }
 
 h1 {
   margin: 64px 0 8px;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--muted);
 }
 
 .meta {
   margin: 0;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--muted);
 }
 
