@@ -1,9 +1,8 @@
-# yummywormy
+# yumworm
 
-My personal dev site, at **https://yummywormy1-stack.github.io**.
+My personal dev site, at **https://yumworm.github.io**.
 
 It's plain HTML, CSS and JS hosted on GitHub Pages.
-
 
 ## files
 
@@ -16,4 +15,3 @@ assets/
   favicon.svg     squiggle icon
 .nojekyll         tells GitHub Pages to serve files as-is (no Jekyll build)
 ```
-

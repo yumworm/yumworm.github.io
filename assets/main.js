@@ -1,7 +1,7 @@
 (() => {
   // On GitHub Pages the username is the subdomain (<user>.github.io), so
   // renaming the account needs no code changes. The fallback is for local previews.
-  const FALLBACK_USER = "yummywormy1-stack";
+  const FALLBACK_USER = "yumworm";
 
   const host = location.hostname.toLowerCase();
   const user = host.endsWith(".github.io") ? host.slice(0, -".github.io".length) : FALLBACK_USER;
@@ -31,15 +31,21 @@
     return "just now";
   };
 
-  const repoItem = (repo) => {
+  const repoItem = (repo, index) => {
     const item = el("li");
-    const link = el("a", null, repo.name);
+    item.style.setProperty("--i", index);
+    const link = el("a", "repo");
     link.href = repo.html_url;
-    item.append(link);
-    if (repo.description) item.append(el("p", "desc", repo.description));
+
+    const name = el("span", "name", repo.name);
+    name.append(el("span", "arrow", "↗"));
+    name.lastChild.setAttribute("aria-hidden", "true");
+    link.append(name);
+    if (repo.description) link.append(el("span", "desc", repo.description));
 
     const meta = [repo.language, repo.stargazers_count && `★ ${repo.stargazers_count}`, `updated ${timeAgo(repo.pushed_at)}`];
-    item.append(el("p", "meta", meta.filter(Boolean).join(" · ")));
+    link.append(el("span", "meta", meta.filter(Boolean).join(" · ")));
+    item.append(link);
     return item;
   };
 
@@ -61,7 +67,7 @@
     .then((repos) => {
       const shown = repos.filter((r) => !r.fork && r.name.toLowerCase() !== `${user}.github.io`);
       if (!shown.length) return showStatus("Nothing public yet.");
-      list.replaceChildren(...shown.map(repoItem));
+      list.replaceChildren(...shown.map((repo, i) => repoItem(repo, i)));
     })
     .catch(() => showStatus("Couldn't reach GitHub right now."));
 })();
